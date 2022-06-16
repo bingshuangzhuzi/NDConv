@@ -15,6 +15,8 @@ Due to the extra constrain of NDLoss, the sampling points tend to be more likely
 Download the datasets `ShanghaiTech A`, `ShanghaiTech B`, `UCF-QNRF`
 Then generate the density maps via `generate_density_map_perfect_names.py`.
 
+change `config.py` to use the path of your dataset.
+
 # Pretrained model
 ```bash
 bash download_models.sh
