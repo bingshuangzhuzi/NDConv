@@ -1,5 +1,15 @@
-<img src="architecture.png" width="1000"/> 
+# Architecture
 
+<img src="net.png" width="1000"/> 
+
+# NDConv
+
+
+<img src="NDConv.jpeg" width="800"/> 
+
+(a) shows the sampling locations of conventional deformable conv, and (b) demonstrates the sampling points of our Normed-Deformable conv.
+
+Due to the extra constrain of NDLoss, the sampling points tend to be more likely in shape of ellipse.
 
 # Data Preparation
 Download the datasets `ShanghaiTech A`, `ShanghaiTech B`, `UCF-QNRF`
