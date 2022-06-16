@@ -45,7 +45,7 @@ class CSRNet_deform_var(nn.Module):
             setattr(self, 'offset_w_{:d}'.format(i), nn.Conv2d(in_channels=in_c, out_channels=2*3*3, kernel_size=3, padding=1))
             #setattr(self, 'scale_w_{:d}'.format(i), nn.Conv2d(in_channels=in_c, out_channels=2*3*3, kernel_size=3, padding=1))
 
-            # In pytorch1.8, the weight of deformable has been included into ops.DeformConv2d(So, it is good..)
+            # In pytorch1.8, the weight of deformable has been included into ops.DeformConv2d (So, it is good..)
             setattr(self, 'deform_{:d}'.format(i), ops.DeformConv2d(in_channels=in_c, out_channels=out_c, kernel_size=3, padding=self.dd, dilation=self.dd))
             setattr(self, 'bn_{:d}'.format(i), nn.BatchNorm2d(out_c))
 
@@ -70,27 +70,14 @@ class CSRNet_deform_var(nn.Module):
             x = cur_block(x)
 
         x_offset_list = []
-        #x_offset_scale_list = []
         # add loss contrain on the offset
         for j in range(self.n_dilated + 1, 7):
             cur_offset = getattr(self, 'offset_w_{:d}'.format(j))
-            #cur_offset_scale = getattr(self, 'scale_w_{:d}'.format(j))
             cur_deform = getattr(self, 'deform_{:d}'.format(j))
             cur_bn = getattr(self, 'bn_{:d}'.format(j))
             x_offset = cur_offset(x)
-            #x_offset_scale = cur_offset_scale(x)
-            # add offset scale
-            #x_offset_scale = F.relu_(x_offset_scale)
             x_offset = torch.tanh(x_offset)
-
-            #scaled_offset = x_offset_scale * x_offset
-            #if self.extra_loss or self.scale_loss:
-                #x_offset_list.append(scaled_offset)
-                #x_offset_scale_list.append(x_offset_scale)
             x = F.relu_(cur_bn(cur_deform(x, x_offset)))
-
-
-        # output = F.leaky_relu_(self.output_layer(x), 0.01) # add relu for SHB for now, later, SHA also relu
         output = self.output_layer(x) # add relu for SHB for now, later, SHA also relu
         # no this line of code in the original csrnet
         output = F.interpolate(output, scale_factor=4, mode='bilinear', align_corners=False)
