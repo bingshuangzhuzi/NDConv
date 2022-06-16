@@ -1,3 +1,6 @@
+<img src="architecture.png" width="1000"/> 
+
+
 # Data Preparation
 Download the datasets `ShanghaiTech A`, `ShanghaiTech B`, `UCF-QNRF`
 Then generate the density maps via `generate_density_map_perfect_names.py`.
