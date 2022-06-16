@@ -21,11 +21,11 @@ class config(object):
         if self.dataset_name == "QNRF_small":
             self.eval_num = 334
             self.train_num = 1201
-            self.train_gt_map_path = "/home/weigang1/zx/NDconv/Processed_QNRF_large_oriImg/den/train"
-            self.eval_gt_map_path = "/home/weigang1/zx/NDconv/Processed_QNRF_large_oriImg/den/test"
-            self.train_img_path = "/home/weigang1/zx/NDconv/Processed_QNRF_large_oriImg/ori/train_data/images"
-            self.eval_img_path = "/home/weigang1/zx/NDconv/Processed_QNRF_large_oriImg/ori/test_data/images"
-            self.eval_gt_path = "/home/weigang1/zx/NDconv/Processed_QNRF_large_oriImg/ori/test_data/ground_truth"
+            self.train_gt_map_path = "/path_QNRF/Processed_QNRF_large_oriImg/den/train"
+            self.eval_gt_map_path = "/path_QNRF/Processed_QNRF_large_oriImg/den/test"
+            self.train_img_path = "/path_QNRF/Processed_QNRF_large_oriImg/ori/train_data/images"
+            self.eval_img_path = "/path_QNRF/Processed_QNRF_large_oriImg/ori/test_data/images"
+            self.eval_gt_path = "/path_QNRF/Processed_QNRF_large_oriImg/ori/test_data/ground_truth"
 
         else:
             raise NameError("No such dataset, only support SHA, SHB, QNRF")
