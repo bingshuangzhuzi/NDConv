@@ -283,49 +283,9 @@ if __name__ == "__main__":
         # os.system('cp '+ img_path + ' ./' + os.path.join(output_img_path, dataset + '_' + os.path.basename(img_path)))
         # 2. save density maps
         np.save(os.path.join(output_den_path, dataset + "_" + os.path.basename(img_path)[:-4] + ".npy"), gt) # some extensions are '.JPG', so...
-        plt.figure(2)
-        plt.imshow(gt,cmap=CM.jet)
-        plt.axis('off')
-        plt.savefig("/home/weigang1/zx/NDConv/gt_den/"+os.path.basename(img_path)[:-4]+'.png')
-        #plt.show()
         # 3. save mats
         scio.savemat(os.path.join(output_mat_path, dataset + "_" + os.path.basename(img_path)[:-4] + ".mat"), {'annPoints':points})
 
-        #ratio_h = (resize_height) / (height)
-        #ratio_w = (resize_width) / (width)
-        #gt = get_density_map_gaussian(resize_height, resize_width, ratio_h, ratio_w, points, False, 4)
-
-
-        #gt = np.reshape(gt, [resize_height, resize_width])  # transpose into w, h
-
-        #gt=torch.from_numpy(gt)
-
-        #gt = torch.zeros_like(gt)
-
-        # transfer gt to float16 to save storage
-        #gt = gt.astype(np.float16)
-
-        # Three stuffs to store
-        # 1. images with new folders
-        #cv2.imwrite(os.path.join(output_img_path, dataset + '_' + os.path.basename(img_path)), img_cv)
-        # assert 1==2
-        #os.system('cp '+ img_path + ' /' + os.path.join(output_img_path, dataset + '_' + os.path.basename(img_path)))
-        # 2. save density maps
-        #np.save(os.path.join(output_den_path, dataset + "_" + os.path.basename(img_path)[:-4] + ".npy"), gt) # some extensions are '.JPG', so...
-        #vis_img = gt.cpu().numpy()
-
-        # normalize density map values from 0 to 1, then map it to 0-255.
-        #vis_img = (vis_img - vis_img.min()) / (vis_img.max() - vis_img.min() + 1e-5)
-
-        #vis_img = (vis_img * 255).astype(np.uint8)
-
-        #vis_img = cv2.applyColorMap(vis_img, cv2.COLORMAP_JET)
-
-        #cv2.imwrite(os.path.join(output_den_path, dataset + "_" + os.path.basename(img_path)[:-4] + ".png"), vis_img)
-        #cv2.imshow(os.path.join(output_den_path, dataset + "_" + os.path.basename(img_path)[:-4] + ".png"), vis_img)
-
-        # 3. save mats
-        #scio.savemat(os.path.join(output_mat_path, dataset + "_" + os.path.basename(img_path)[:-4] + ".mat"), {'annPoints':points})
 
 
 
